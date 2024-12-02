@@ -23,22 +23,39 @@ def get_officer_id(first_name, last_name):
         st.dataframe(po_lookup)
     return uid
 
-def search_data(id):
+def search_complaints(id):
     global acc
-    global trr
-    global suits
 
     acc_lookup = acc.loc[acc['UID'] == id].copy()
     st.caption('Complaint Results')
-    st.dataframe(acc_lookup)
+
+    if len(acc_lookup) == 0:
+        st.text('No complaint results')
+    else:
+        st.dataframe(acc_lookup)
+
+def search_trrs(df):
+    global trr
 
     trr_lookup = trr.loc[trr['UID'] == id].copy()  
     st.caption('TRR Result')
-    st.dataframe(trr_lookup)
+
+    if len(trr_lookup) == 0:
+        st.text('No TRR results')
+    else:
+        st.dataframe(trr_lookup)
+
+def search_suits(df):
+    global suits
 
     suits_lookup = suits.loc[suits['UID'] == id].copy()
     st.caption('Lawsuits Result')
-    st.dataframe(suits_lookup)
+
+    if len(suits_lookup) == 0:
+        st.text('No lawsuit results')
+    else:
+        st.dataframe(suits_lookup)
+
 
 # load_and_clean_data()
 po_names = pd.read_csv('po_names.csv')
@@ -50,7 +67,9 @@ st.title('look up officer stuff in our data (plz keep this internal)')
 first = st.text_input('Officer first name (all caps please)')
 last = st.text_input('Officer last name (all caps please)')
 officer_id = get_officer_id(first, last)
-search_data(officer_id)
+search_complaints(officer_id)
+search_trrs(officer_id)
+search_suits(officer_id)
 
 
 
