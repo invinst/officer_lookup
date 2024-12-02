@@ -17,6 +17,7 @@ def get_officer_id(first_name, last_name):
         uid = po_lookup['UID'].values[0]
     elif len(po_lookup) == 0:
         st.text('There is no officer that matches that name :(')
+        uid = 0
     else:
         uid = st.number_input('There are multiple officers with this name. Please type in the correct one\'s UID by looking at the table below. Type it in without the comma though, thnx!!')
         st.dataframe(po_lookup)
