@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import glob
-from stqdm import stqdm
 
 po_names = pd.DataFrame()
 acc = pd.DataFrame()
