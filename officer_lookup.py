@@ -16,6 +16,8 @@ def get_officer_id(first_name, last_name):
     po_lookup = po_names.loc[(po_names['last_name'] == last_name) & (po_names['first_name'] == first_name)].copy()
     if len(po_lookup) == 1:
         uid = po_lookup['UID'].values[0]
+    elif len(po_lookup) == 0:
+        st.text('There is no officer that matches that name :(')
     else:
         uid = st.number_input('There are multiple officers with this name. Please type in the correct one\'s UID by looking at the table below')
         st.dataframe(po_lookup)
